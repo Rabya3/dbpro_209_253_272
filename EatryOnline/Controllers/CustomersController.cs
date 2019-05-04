@@ -153,7 +153,11 @@ namespace EatryOnline.Controllers
 
       
 
+<<<<<<< HEAD
         // GET: Customers/ Edit /5
+=======
+        // GET: Customers/Edit/5
+>>>>>>> 21e2d4d228de26a687888fb3536842593688c530
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -168,7 +172,11 @@ namespace EatryOnline.Controllers
             return View(customer);
         }
 
+<<<<<<< HEAD
         // POST: Customers / Edit /5
+=======
+        // POST: Customers/Edit/5
+>>>>>>> 21e2d4d228de26a687888fb3536842593688c530
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -184,7 +192,11 @@ namespace EatryOnline.Controllers
             return View(customer);
         }
 
+<<<<<<< HEAD
         // GET: Customers/ Delete /5
+=======
+        // GET: Customers/Delete/5
+>>>>>>> 21e2d4d228de26a687888fb3536842593688c530
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -199,7 +211,11 @@ namespace EatryOnline.Controllers
             return View(customer);
         }
 
+<<<<<<< HEAD
         // POST: Customers/ Delete /5
+=======
+        // POST: Customers/Delete/5
+>>>>>>> 21e2d4d228de26a687888fb3536842593688c530
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
