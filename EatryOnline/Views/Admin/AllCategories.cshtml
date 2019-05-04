@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "AllCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>AllCategories</h2>
@@ -15,9 +16,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -26,12 +25,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @Html.ActionLink("food", "AddFoodItem", new { id=item.CategoryId }) |
+            @Html.ActionLink("Food", "AddFoodItem", new { id=item.CategoryId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
         </td>
     </tr>

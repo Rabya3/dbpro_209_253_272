@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using EatryOnline.Models;
 using System.Data.Entity.Infrastructure;
 using System.Net;
+using System.IO;
 
 namespace EatryOnline.Controllers
 {
@@ -16,7 +17,7 @@ namespace EatryOnline.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DB25 db = new DB25())
+                using (DB25dd db = new DB25dd())
                 {
                     var obj = db.Admins.Where(a => a.Email.Equals(objadmin.Email) && a.Password.Equals(objadmin.Password)).FirstOrDefault();
                     if (obj != null)
@@ -39,6 +40,7 @@ namespace EatryOnline.Controllers
         }
 
 
+
         string Constr = "Data Source=MAXIMUS\\SQLEXPRESS;Initial Catalog=DB25;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpPost]
         public ActionResult AddCategory(CategoryViewModel model)
@@ -48,7 +50,7 @@ namespace EatryOnline.Controllers
 
             if (ModelState.IsValid)
             {
-                string cmd2 = string.Format("INSERT INTO Category(Name,Description) VALUES('{0}','{1}')", model.Name, model.Description);
+                string cmd2 = string.Format("INSERT INTO Category(Name) VALUES('{0}')", model.Name);
 
                 SqlCommand cmd = new SqlCommand(cmd2, connection);
                 cmd.ExecuteNonQuery();
@@ -67,50 +69,28 @@ namespace EatryOnline.Controllers
             }
         }
 
-        //[HttpPost]
-        //public ActionResult DisplayCategory()
-        //{
-        //    DB25 db = new DB25();
-        //    return View(db.Categories.ToList());
-
-        //}
-
+     
+        //For all catagories
 
         public ActionResult AllCategories()
         {
-            DB25 db = new DB25();
+          DB25dd db = new DB25dd();
             return View(db.Categories.ToList());
         }
 
-        DB25 dd = new DB25();
 
-        //public ActionResult DeleteCategory(int id)
-        //{
-        //    SqlConnection connection = new SqlConnection(Constr);
-        //    connection.Open();
+        
 
-        //    string cmd2 = string.Format("DELETE FROM Category WHERE CategoryId=id");
+        DB25dd dd = new DB25dd();
 
-        //        SqlCommand cmd = new SqlCommand(cmd2, connection);
-        //        cmd.ExecuteNonQuery();
-        //        connection.Close();
-                
-        //    return View();
-        //}
 
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Category movie = dd.Categories.Find(id);
-        //    if (movie == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(movie);
-        //}
+        public ActionResult AllFood()
+        {
+            DB25dd db = new DB25dd();
+            return View(db.FoodItems.ToList());
+        }
+
+        // GET: Delete/
 
         public ActionResult Delete(int? id)
         {
@@ -126,6 +106,7 @@ namespace EatryOnline.Controllers
             return View(cat);
         }
 
+        // GET: Edit/
 
         public ActionResult Edit(int? id)
         {
@@ -152,7 +133,7 @@ namespace EatryOnline.Controllers
             }
             var ToUpdate = dd.Categories.Find(id);
             if (TryUpdateModel(ToUpdate, "",
-               new string[] { "Description" }))
+               new string[] { "Name" }))
             {
                 try
                 {
@@ -162,7 +143,7 @@ namespace EatryOnline.Controllers
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
             }
@@ -170,7 +151,7 @@ namespace EatryOnline.Controllers
             return View(ToUpdate);
         }
 
-        // POST: /Movies/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -181,29 +162,70 @@ namespace EatryOnline.Controllers
             return RedirectToAction("AllCategories");
         }
 
-        public ActionResult AddFoodItem(int? id, FoodViewModel food)
+       
+
+
+
+        [HttpGet]
+        public ActionResult AddFoodItem()
         {
-            SqlConnection connection = new SqlConnection(Constr);
-            connection.Open();
-            Category cat = dd.Categories.Find(id);
+            return View();
+        }
+        //Post: Edit/
+        [HttpPost]
+        public ActionResult AddFoodItem(int? id, FoodItem f)
+        {
+
+            FoodItem cat = dd.FoodItems.Find(id);
             if (id != null)
             {
 
-                if (ModelState.IsValid)
-                {
-                    string cmd2 = string.Format("INSERT INTO FoodItem(Name,CategoryId,Price) VALUES('{0}','{1}','{2}')", food.Name,id, food.Price);
+                string filename = Path.GetFileNameWithoutExtension(f.ImageFile.FileName);
+                string extension = Path.GetExtension(f.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                f.imagepath = "~/Content/images/Uploads" + filename;
+                filename = Path.Combine(Server.MapPath("~/Content/images//Uploads"), filename);
+                f.ImageFile.SaveAs(filename);
+                SqlConnection connection = new SqlConnection(Constr);
+                connection.Open();
+             
+                    if (ModelState.IsValid)
+                    {
+                        string cmd2 = string.Format("INSERT INTO FoodItem(FoodName,CategoryId,Price, IsSpecial,imagepath) VALUES('{0}','{1}','{2}','{3}','{4}')", f.FoodName, id, f.Price, f.IsSpecial, f.imagepath);
 
-                    SqlCommand cmd = new SqlCommand(cmd2, connection);
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                    ModelState.Clear();
+                        SqlCommand cmd = new SqlCommand(cmd2, connection);
+                        cmd.ExecuteNonQuery();
+                        connection.Close();
+                        ModelState.Clear();
+                    TempData["Message"] = "New Food Item Added";
 
-                }
-              
+                    }
+
+            }
+            return View(f);
+        }
+
+        
+        public ActionResult FoodDetails(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FoodItem food = dd.FoodItems.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
             }
             return View(food);
         }
 
+        public ActionResult View(CustomerPort p)
+        {
+            return View();
+        }
+
 
     }
+
 }

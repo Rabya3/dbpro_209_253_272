@@ -20,9 +20,5 @@ namespace EatryOnline
         public int BillingId { get; set; }
         public System.DateTime Date { get; set; }
         public string TotalAmount { get; set; }
-    
-        public virtual Billing Billing { get; set; }
-        public virtual FoodItem FoodItem { get; set; }
-        public virtual Order Order { get; set; }
     }
 }
