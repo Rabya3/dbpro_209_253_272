@@ -11,13 +11,21 @@ namespace EatryOnline
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Employee
     {
         public int Id { get; set; }
+
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+
+        [DisplayName("First Name")]
+        public string LastName { get; set; }
+        public string Contact { get; set; }
+        public string Address { get; set; }
         public string Designation { get; set; }
         public string Salary { get; set; }
-    
-        public virtual Person Person { get; set; }
     }
 }

@@ -16,7 +16,5 @@ namespace EatryOnline
     {
         public int CustomerId { get; set; }
         public string Paragraphh { get; set; }
-    
-        public virtual Customer Customer { get; set; }
     }
 }

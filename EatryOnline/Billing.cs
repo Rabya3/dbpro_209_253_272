@@ -14,22 +14,11 @@ namespace EatryOnline
     
     public partial class Billing
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Billing()
-        {
-            this.PurchasedItems = new HashSet<PurchasedItem>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public string TotalAmount { get; set; }
         public int CustomerId { get; set; }
         public int OrderId { get; set; }
         public string MinLimit { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Order Order { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchasedItem> PurchasedItems { get; set; }
     }
 }

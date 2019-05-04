@@ -26,5 +26,6 @@ namespace EatryOnline.Controllers
 
             return View();
         }
+
     }
 }

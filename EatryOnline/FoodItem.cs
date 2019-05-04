@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 namespace EatryOnline
 {
     using System;
@@ -17,20 +20,23 @@ namespace EatryOnline
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FoodItem()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
-            this.PurchasedItems = new HashSet<PurchasedItem>();
+            this.Orders = new HashSet<Order>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int FoodId { get; set; }
+        public string FoodName { get; set; }
         public int CategoryId { get; set; }
         public string Price { get; set; }
-        public byte[] image { get; set; }
-    
+        public string IsSpecial { get; set; }
+        [DisplayName("Upload Image")]
+        public string imagepath { get; set; }
+
+      
+
+
+        public HttpPostedFileBase ImageFile { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchasedItem> PurchasedItems { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
