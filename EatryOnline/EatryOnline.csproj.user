@@ -13,6 +13,10 @@
     <WebStackScaffolding_DbContextTypeFullName>EatryOnline.DB25dd</WebStackScaffolding_DbContextTypeFullName>
     <ProjectView>ProjectFiles</ProjectView>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+<<<<<<< HEAD
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+=======
+>>>>>>> 21e2d4d228de26a687888fb3536842593688c530
   </PropertyGroup>
   <PropertyGroup>
     <ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\</ReferencePath>

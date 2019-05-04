@@ -51,7 +51,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/Index
+        // GET: / Manage / Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -76,7 +76,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/RemoveLogin
+        // POST: / Manage/ RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -100,14 +100,14 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/AddPhoneNumber
+        // GET: / Manage / AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
 
         //
-        // POST: /Manage/AddPhoneNumber
+        // POST: / Manage / AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -131,7 +131,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/EnableTwoFactorAuthentication
+        // POST: / Manage / EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -146,7 +146,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/DisableTwoFactorAuthentication
+        // POST: / Manage / DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -161,7 +161,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/VerifyPhoneNumber
+        // GET: / Manage/ VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -170,7 +170,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/VerifyPhoneNumber
+        // POST: / Manage / VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -195,7 +195,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/RemovePhoneNumber
+        // POST: / Manage / RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -214,14 +214,14 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/ChangePassword
+        // GET: / Manage / ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
 
         //
-        // POST: /Manage/ChangePassword
+        // POST: / Manage / ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -245,14 +245,14 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/SetPassword
+        // GET: / Manage / SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
 
         //
-        // POST: /Manage/SetPassword
+        // POST: / Manage / SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -277,7 +277,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/ManageLogins
+        // GET: / Manage / ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -300,7 +300,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // POST: /Manage/LinkLogin
+        // POST: / Manage / LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -310,7 +310,7 @@ namespace EatryOnline.Controllers
         }
 
         //
-        // GET: /Manage/LinkLoginCallback
+        // GET: / Manage / LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
