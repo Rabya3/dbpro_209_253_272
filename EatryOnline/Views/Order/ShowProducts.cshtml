@@ -1,0 +1,94 @@
+﻿@model IEnumerable<EatryOnline.FoodItem>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        .section {
+            margin: 200px;
+            margin-left: 160px;
+        }
+
+        h2 {
+            color: #ffb606;
+            font-weight: bold;
+            margin-left: 120px;
+        }
+
+        p {
+            color: black;
+            font-weight: bold;
+            margin-left: 100px;
+        }
+
+        btn {
+            margin: 200px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="w3-container">
+        <center><h2>Sign Up</h2></center>
+        <center>
+            <p>jhbfdhd</p>
+        </center>
+        <center>
+            <p>jhbfdhd</p>
+        </center>
+
+    </div>
+    <div class="w3-container">
+
+        <h2>Menu</h2>
+       
+    </div>
+
+    <div class="container">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FoodName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                  
+                    <th>@Html.DisplayNameFor(model => model.Category.Name)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FoodName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        
+                        <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+
+                        <td>
+                          
+                            <a class="btn btn-success" href="@Url.Action("AddOrder",new {Cid= Session["UserId"], Fid = item.FoodId, })">Order</a>
+                          
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+

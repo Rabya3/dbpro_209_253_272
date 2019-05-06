@@ -104,7 +104,7 @@
     <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="customerId" Type="Int32" Nullable="false" />
     <Property Name="foodId" Type="Int32" Nullable="false" />
-    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
     <NavigationProperty Name="FoodItem" Relationship="Self.FK_Order_FoodItem" FromRole="Order" ToRole="FoodItem" />
   </EntityType>
@@ -254,6 +254,8 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="foodwas" EntityType="DB25Model.foodwa" />
+    <EntitySet Name="Table_1" EntityType="DB25Model.Table_1" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -266,4 +268,18 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="foodwa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Table_1">
+    <Key>
+      <PropertyRef Name="UserType" />
+    </Key>
+    <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

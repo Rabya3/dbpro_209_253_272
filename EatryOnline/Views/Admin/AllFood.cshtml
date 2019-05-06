@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.IsSpecial)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.imagepath)
+            <img src="~/Content/images/Uploads/@item.imagepath" alt="" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

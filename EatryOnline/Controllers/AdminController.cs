@@ -70,10 +70,6 @@ namespace EatryOnline.Controllers
         }
 
      
-<<<<<<< HEAD
-        //For all catagories
-=======
->>>>>>> 21e2d4d228de26a687888fb3536842593688c530
 
         public ActionResult AllCategories()
         {
@@ -92,11 +88,6 @@ namespace EatryOnline.Controllers
             DB25dd db = new DB25dd();
             return View(db.FoodItems.ToList());
         }
-<<<<<<< HEAD
-
-        // GET: Delete/
-=======
->>>>>>> 21e2d4d228de26a687888fb3536842593688c530
 
         public ActionResult Delete(int? id)
         {
@@ -112,7 +103,6 @@ namespace EatryOnline.Controllers
             return View(cat);
         }
 
-        // GET: Edit/
 
         public ActionResult Edit(int? id)
         {
@@ -177,11 +167,7 @@ namespace EatryOnline.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
-        //Post: Edit/
-=======
 
->>>>>>> 21e2d4d228de26a687888fb3536842593688c530
         [HttpPost]
         public ActionResult AddFoodItem(int? id, FoodItem f)
         {
@@ -215,11 +201,7 @@ namespace EatryOnline.Controllers
             return View(f);
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 21e2d4d228de26a687888fb3536842593688c530
-        public ActionResult FoodDetails(int id)
+        public ActionResult FoodDetails(int? id)
         {
             if (id == null)
             {

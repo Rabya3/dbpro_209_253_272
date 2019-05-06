@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>Cart</h2>
+<table>
+    @foreach (var item in ViewBag.Od)
+    {
+
+        <tr>
+            <td>@item.CustId</td>
+            <td>@item.FooId</td>
+            <td>@item.Datee</td>
+         
+        </tr>
+
+    }
+</table>

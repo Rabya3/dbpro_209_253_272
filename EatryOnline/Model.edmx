@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB25Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB25Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Email" />
@@ -95,6 +95,14 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           <Property Name="IsSpecial" Type="varchar" MaxLength="50" />
           <Property Name="imagepath" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="foodwa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="path" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="HomeDelivery">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,11 +118,11 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="orderDate" Type="date" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="foodId" Type="int" Nullable="false" />
-          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
         </EntityType>
         <EntityType Name="PurchasedItem">
           <Key>
@@ -143,6 +151,12 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           </Key>
           <Property Name="No" Type="int" Nullable="false" />
           <Property Name="Details" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Booking_Table">
           <End Role="Table" Type="Self.Table" Multiplicity="1" />
@@ -232,11 +246,13 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodItem" EntityType="Self.FoodItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="foodwa" EntityType="Self.foodwa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HomeDelivery" EntityType="Self.HomeDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchasedItem" EntityType="Self.PurchasedItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Feedback].[CustomerId] AS [CustomerId], 
@@ -260,8 +276,7 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB25Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -369,7 +384,7 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="foodId" Type="Int32" Nullable="false" />
-          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="FoodItem" Relationship="Self.FK_Order_FoodItem" FromRole="Order" ToRole="FoodItem" />
         </EntityType>
@@ -519,6 +534,8 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="foodwas" EntityType="DB25Model.foodwa" />
+          <EntitySet Name="Table_1" EntityType="DB25Model.Table_1" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -531,6 +548,20 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="foodwa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -710,6 +741,22 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB25Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB25Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="foodwas">
+            <EntityTypeMapping TypeName="DB25Model.foodwa">
+              <MappingFragment StoreEntitySet="foodwa">
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_1">
+            <EntityTypeMapping TypeName="DB25Model.Table_1">
+              <MappingFragment StoreEntitySet="Table_1">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -23,6 +23,8 @@
         <AssociationConnector Association="DB25Model.FK_FoodItem_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DB25Model.FK_Order_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="DB25Model.FK_Order_FoodItem" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB25Model.foodwa" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DB25Model.Table_1" Width="1.5" PointX="10.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,15 +12,8 @@ namespace EatryOnline
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Table_1
     {
-        public int Id { get; set; }
-        public System.DateTime orderDate { get; set; }
-        public int customerId { get; set; }
-        public int foodId { get; set; }
-        public Nullable<int> quantity { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual FoodItem FoodItem { get; set; }
+        public string UserType { get; set; }
     }
 }

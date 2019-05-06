@@ -41,6 +41,8 @@ namespace EatryOnline
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<foodwa> foodwas { get; set; }
+        public virtual DbSet<Table_1> Table_1 { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

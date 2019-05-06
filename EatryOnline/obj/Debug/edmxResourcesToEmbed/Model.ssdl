@@ -90,6 +90,14 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <Property Name="IsSpecial" Type="varchar" MaxLength="50" />
     <Property Name="imagepath" Type="varchar(max)" />
   </EntityType>
+  <EntityType Name="foodwa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="path" Type="varchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="HomeDelivery">
     <Key>
       <PropertyRef Name="Id" />
@@ -105,11 +113,11 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="orderDate" Type="date" Nullable="false" />
     <Property Name="customerId" Type="int" Nullable="false" />
     <Property Name="foodId" Type="int" Nullable="false" />
-    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
   </EntityType>
   <EntityType Name="PurchasedItem">
     <Key>
@@ -138,6 +146,12 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     </Key>
     <Property Name="No" Type="int" Nullable="false" />
     <Property Name="Details" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Table_1">
+    <Key>
+      <PropertyRef Name="UserType" />
+    </Key>
+    <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_Booking_Table">
     <End Role="Table" Type="Self.Table" Multiplicity="1" />
@@ -227,11 +241,13 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FoodItem" EntityType="Self.FoodItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="foodwa" EntityType="Self.foodwa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeDelivery" EntityType="Self.HomeDelivery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PurchasedItem" EntityType="Self.PurchasedItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Feedback].[CustomerId] AS [CustomerId], 

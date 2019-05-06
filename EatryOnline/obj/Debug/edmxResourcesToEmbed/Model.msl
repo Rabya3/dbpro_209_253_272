@@ -174,5 +174,21 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB25Model.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB25Model.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="foodwas">
+      <EntityTypeMapping TypeName="DB25Model.foodwa">
+        <MappingFragment StoreEntitySet="foodwa">
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_1">
+      <EntityTypeMapping TypeName="DB25Model.Table_1">
+        <MappingFragment StoreEntitySet="Table_1">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
