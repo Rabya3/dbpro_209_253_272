@@ -1,0 +1,69 @@
+﻿@model EatryOnline.FoodItem
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FoodItem</title>
+</head>
+<body>
+    <div>
+        <h4>FoodItem</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FoodName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FoodName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsSpecial)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsSpecial)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.imagepath)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.imagepath)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    @{ Html.BeginForm("cart", "Order", FormMethod.Post, new { @class = "cart" });
+        <input type="hidden" name="pid" value="@Model.FoodId" />
+        <input type="text" name="pqty" value="1"/>
+        <button type="submit">Add to Cart</button>
+    }
+    }
+
+</body>
+</html>

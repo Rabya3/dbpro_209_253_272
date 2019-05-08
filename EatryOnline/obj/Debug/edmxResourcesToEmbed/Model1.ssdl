@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB25Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DB25Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="Email" />
@@ -21,7 +21,6 @@
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="Id" />
-      <PropertyRef Name="TableNo" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="TableNo" Type="int" Nullable="false" />
@@ -35,7 +34,6 @@
     </Key>
     <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Chef">
     <Key>
@@ -70,25 +68,32 @@
     <Property Name="Designation" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Salary" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Feedback">
-    <Key>
-      <PropertyRef Name="CustomerId" />
-      <PropertyRef Name="Paragraphh" />
-    </Key>
-    <Property Name="CustomerId" Type="int" Nullable="false" />
-    <Property Name="Paragraphh" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="FoodItem">
+  <EntityType Name="FeedbackCustomer">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodItem">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
-    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="IsSpecial" Type="varchar" MaxLength="50" />
     <Property Name="imagepath" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="foodwa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="path" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="HomeDelivery">
     <Key>
@@ -105,11 +110,11 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="orderDate" Type="date" Nullable="false" />
     <Property Name="customerId" Type="int" Nullable="false" />
     <Property Name="foodId" Type="int" Nullable="false" />
-    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
   </EntityType>
   <EntityType Name="PurchasedItem">
     <Key>
@@ -145,15 +150,27 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     </Key>
     <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Booking_Table">
-    <End Role="Table" Type="Self.Table" Multiplicity="1" />
+  <Association Name="FK_Booking_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Table">
-        <PropertyRef Name="No" />
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Booking">
-        <PropertyRef Name="TableNo" />
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeedbackCustomer_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="FeedbackCustomer" Type="Self.FeedbackCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackCustomer">
+        <PropertyRef Name="customerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -186,14 +203,14 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="FoodItem">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="FoodId" />
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="foodId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB25ModelStoreContainer">
+  <EntityContainer Name="DB25Model1StoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -201,22 +218,22 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <EntitySet Name="Chef" EntityType="Self.Chef" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackCustomer" EntityType="Self.FeedbackCustomer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FoodItem" EntityType="Self.FoodItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="foodwa" EntityType="Self.foodwa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeDelivery" EntityType="Self.HomeDelivery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PurchasedItem" EntityType="Self.PurchasedItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Feedback" EntityType="Self.Feedback" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Feedback].[CustomerId] AS [CustomerId], 
-    [Feedback].[Paragraphh] AS [Paragraphh]
-    FROM [dbo].[Feedback] AS [Feedback]</DefiningQuery>
-    </EntitySet>
-    <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
-      <End Role="Table" EntitySet="Table" />
+    <AssociationSet Name="FK_Booking_Customer" Association="Self.FK_Booking_Customer">
+      <End Role="Customer" EntitySet="Customer" />
       <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeedbackCustomer_Customer" Association="Self.FK_FeedbackCustomer_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="FeedbackCustomer" EntitySet="FeedbackCustomer" />
     </AssociationSet>
     <AssociationSet Name="FK_FoodItem_Category" Association="Self.FK_FoodItem_Category">
       <End Role="Category" EntitySet="Category" />

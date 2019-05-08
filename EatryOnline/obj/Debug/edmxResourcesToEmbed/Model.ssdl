@@ -86,7 +86,7 @@ warning 6002: The table/view 'DB25.dbo.Feedback' does not have a primary key def
     <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FoodName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
-    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
     <Property Name="IsSpecial" Type="varchar" MaxLength="50" />
     <Property Name="imagepath" Type="varchar(max)" />
   </EntityType>

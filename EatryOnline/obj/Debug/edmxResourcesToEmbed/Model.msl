@@ -79,10 +79,10 @@
     <EntitySetMapping Name="FoodItems">
       <EntityTypeMapping TypeName="DB25Model.FoodItem">
         <MappingFragment StoreEntitySet="FoodItem">
+          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="FoodId" ColumnName="FoodId" />
           <ScalarProperty Name="FoodName" ColumnName="FoodName" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
           <ScalarProperty Name="imagepath" ColumnName="imagepath" />
         </MappingFragment>

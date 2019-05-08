@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DB25ModelStoreContainer" CdmEntityContainer="DB25Entities">
+  <EntityContainerMapping StorageEntityContainer="DB25Model1StoreContainer" CdmEntityContainer="DB25E">
     <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="DB25Model.Admin">
+      <EntityTypeMapping TypeName="DB25Model1.Admin">
         <MappingFragment StoreEntitySet="Admin">
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Billings">
-      <EntityTypeMapping TypeName="DB25Model.Billing">
+      <EntityTypeMapping TypeName="DB25Model1.Billing">
         <MappingFragment StoreEntitySet="Billing">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Bookings">
-      <EntityTypeMapping TypeName="DB25Model.Booking">
+      <EntityTypeMapping TypeName="DB25Model1.Booking">
         <MappingFragment StoreEntitySet="Booking">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TableNo" ColumnName="TableNo" />
@@ -33,16 +33,15 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="DB25Model.Category">
+      <EntityTypeMapping TypeName="DB25Model1.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Chefs">
-      <EntityTypeMapping TypeName="DB25Model.Chef">
+      <EntityTypeMapping TypeName="DB25Model1.Chef">
         <MappingFragment StoreEntitySet="Chef">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -50,7 +49,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="DB25Model.Customer">
+      <EntityTypeMapping TypeName="DB25Model1.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -65,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="DB25Model.Employee">
+      <EntityTypeMapping TypeName="DB25Model1.Employee">
         <MappingFragment StoreEntitySet="Employee">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -78,18 +77,28 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FoodItems">
-      <EntityTypeMapping TypeName="DB25Model.FoodItem">
+      <EntityTypeMapping TypeName="DB25Model1.FoodItem">
         <MappingFragment StoreEntitySet="FoodItem">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
           <ScalarProperty Name="imagepath" ColumnName="imagepath" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="foodwas">
+      <EntityTypeMapping TypeName="DB25Model1.foodwa">
+        <MappingFragment StoreEntitySet="foodwa">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="path" ColumnName="path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="HomeDeliveries">
-      <EntityTypeMapping TypeName="DB25Model.HomeDelivery">
+      <EntityTypeMapping TypeName="DB25Model1.HomeDelivery">
         <MappingFragment StoreEntitySet="HomeDelivery">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Address" ColumnName="Address" />
@@ -101,7 +110,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="DB25Model.Order">
+      <EntityTypeMapping TypeName="DB25Model1.Order">
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="orderDate" ColumnName="orderDate" />
@@ -112,7 +121,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PurchasedItems">
-      <EntityTypeMapping TypeName="DB25Model.PurchasedItem">
+      <EntityTypeMapping TypeName="DB25Model1.PurchasedItem">
         <MappingFragment StoreEntitySet="PurchasedItem">
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="FoodId" ColumnName="FoodId" />
@@ -124,7 +133,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="DB25Model.sysdiagram">
+      <EntityTypeMapping TypeName="DB25Model1.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -135,7 +144,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tables">
-      <EntityTypeMapping TypeName="DB25Model.Table">
+      <EntityTypeMapping TypeName="DB25Model1.Table">
         <MappingFragment StoreEntitySet="Table">
           <ScalarProperty Name="No" ColumnName="No" />
           <ScalarProperty Name="Details" ColumnName="Details" />
@@ -143,17 +152,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Table_1">
-      <EntityTypeMapping TypeName="DB25Model.Table_1">
+      <EntityTypeMapping TypeName="DB25Model1.Table_1">
         <MappingFragment StoreEntitySet="Table_1">
           <ScalarProperty Name="UserType" ColumnName="UserType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Feedbacks">
-      <EntityTypeMapping TypeName="DB25Model.Feedback">
-        <MappingFragment StoreEntitySet="Feedback">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="Paragraphh" ColumnName="Paragraphh" />
+    <EntitySetMapping Name="FeedbackCustomers">
+      <EntityTypeMapping TypeName="DB25Model1.FeedbackCustomer">
+        <MappingFragment StoreEntitySet="FeedbackCustomer">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

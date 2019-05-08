@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa32f60bf95d4038ac7fd26d32daab63" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="DB25Model1.Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Billing" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Booking" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Chef" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Customer" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Employee" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.FoodItem" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.foodwa" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.HomeDelivery" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Order" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.PurchasedItem" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.sysdiagram" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Table" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB25Model1.Table_1" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="DB25Model1.FK_Booking_Table" ManuallyRouted="false" />
+        <AssociationConnector Association="DB25Model1.FK_FoodItem_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="DB25Model1.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DB25Model1.FK_Order_FoodItem" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB25Model1.FeedbackCustomer" Width="1.5" PointX="5.25" PointY="12.5" />
+        <AssociationConnector Association="DB25Model1.FK_FeedbackCustomer_Customer" />
+        <AssociationConnector Association="DB25Model1.FK_Booking_Customer" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

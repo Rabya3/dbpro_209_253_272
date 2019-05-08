@@ -6,8 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+
 namespace EatryOnline
 {
     using System;
@@ -22,8 +21,6 @@ namespace EatryOnline
         }
     
         public int CategoryId { get; set; }
-
-        [DisplayName("Category")]
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

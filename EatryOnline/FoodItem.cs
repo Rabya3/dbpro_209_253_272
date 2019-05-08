@@ -6,6 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
@@ -23,21 +24,18 @@ namespace EatryOnline
         }
     
         public int FoodId { get; set; }
-
-        [DisplayName("Item")]
         public string FoodName { get; set; }
         public int CategoryId { get; set; }
-        public string Price { get; set; }
-
-        [DisplayName("Special Dish")]
+        public Nullable<decimal> Price { get; set; }
         public string IsSpecial { get; set; }
-
         [DisplayName("Image")]
         public string imagepath { get; set; }
 
-       
+
+
+
         public HttpPostedFileBase ImageFile { get; set; }
-    
+
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

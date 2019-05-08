@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "cart";
+    Layout = null;
+}
+
+    <html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style>
+            .section {
+                margin: 200px;
+                margin-left: 160px;
+            }
+
+            h2 {
+                color: #ffb606;
+                font-weight: bold;
+                margin-left: 100px;
+            }
+
+            p {
+                color: black;
+                font-weight: bold;
+                margin-left: 100px;
+            }
+
+            btn {
+                margin: 200px;
+            }
+        </style>
+    </head>
+    <body>
+
+
+        <div class="w3-container">
+            <center><h2>Sign Up</h2></center>
+            <center>
+                <p>jhbfdhd</p>
+            </center>
+            <center>
+                <p>jhbfdhd</p>
+            </center>
+
+        </div>
+        <div class="w3-container">
+
+            <h2>Your Cart</h2>
+           
+        </div>
+
+        <div class="container">
+
+            <table class="table table-striped">
+
+                @{
+                    DB25E obj = new DB25E();
+                    var it = obj.FoodItems.ToList();
+
+                    foreach (var item in ViewBag.c)
+                    {
+
+                        foreach (var i in it)
+                        {
+                            if (i.FoodId == @item.iid)
+                            {
+                                var amount = @item.iqty * @i.Price;
+                                
+                                <tr>
+                                    <td>
+                                        @i.FoodName;
+                                    </td>
+                                    <td>
+                                        @i.Price;
+                                    </td>
+                                    <td>
+                                        @item.iqty;
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+                    }
+
+                }
+            </table>
+
+            </div>
+</body>
+</html>

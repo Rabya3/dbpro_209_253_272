@@ -17,12 +17,12 @@ namespace EatryOnline.Controllers
         [HttpGet]
         public ActionResult ShowProducts()
         {
-            DB25dd Gro = new DB25dd();
+            DB25E Gro = new DB25E();
             List<FoodItem> data = Gro.FoodItems.ToList();
             return View(data);
         }
 
-        DB25dd dd = new DB25dd();
+        DB25E dd = new DB25E();
         public ActionResult FoodDetails(int? id)
         {
             if (id == null)
@@ -37,17 +37,52 @@ namespace EatryOnline.Controllers
             return View(food);
         }
 
-        [HttpPost]
-        public ActionResult AddOrder(int C,int F)
+        public ActionResult cart()
         {
-            Ordering i = new Ordering();
-            i.CustId = C;
-            i.FooId = F;
-        
-            Orderlist.Od.Add(i);
-            ViewBag.Od = Orderlist.Od;
+            
+            ViewBag.c = Ok.c;
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult cart(string pid, string pqty)
+        {
+            foreach(var item in Ok.c)
+            {
+                if(item.iid== int.Parse(pid))
+                {
+                    item.iqty += int.Parse(pqty);
+                    ViewBag.c = Ok.c;
+                    return View();
+                }
+               
+            }
+            cartitem i = new cartitem() { iid = int.Parse( pid), iqty = int.Parse( pqty) };
+            Ok.c.Add(i);
+            ViewBag.c = Ok.c;
+            return View();
+        }
+
+        public ActionResult FoodItem(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FoodItem food = dd.FoodItems.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
+            return View(food);
+        }
+
+        public ActionResult View(CustomerPort p)
+        {
+            return View();
+        }
+
 
     }
 }

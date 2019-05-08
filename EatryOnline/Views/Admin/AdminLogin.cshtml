@@ -1,36 +1,67 @@
 ﻿@model EatryOnline.Models.AdminViewModel
 
 @{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+
+@{
     <html>
     <head>
 
         <style>
-            h1 {
+            h2 {
                 color: #ffb606;
                 font-weight: bold;
             }
+
+            form {
+                margin: 30px;
+                padding: 0 5px;
+                background-color: lightgray;
+            }
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin: 5px 0;
+            }
         </style>
-     
-
-
     </head>
     <body>
-
-        <center><h1>Login</h1></center>
     </body>
+
 </html>
 }
-
-
+<center>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        
+
+
+    <div class="form">
+
+
+
+        <div class="w3-container">
+            <center><h2>Sign Up</h2></center>
+            <center>
+                <p>jhbfdhd</p>
+            </center>
+
+        </div>
+        <div class="w3-container">
+
+            <center><h2>Login</h2></center>
+
+        </div>
+
+
+        <hr />
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -57,12 +88,17 @@
             </div>
         </div>
     </div>
+
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</center>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+                window.onload = function () {
+                    alert("@(TempData["Message"] as string)");
+                };
+    </script>
 }

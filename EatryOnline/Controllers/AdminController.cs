@@ -13,26 +13,43 @@ namespace EatryOnline.Controllers
 {
     public class AdminController : Controller
     {
-        public ActionResult AdminLogin(AdminViewModel objadmin)
+        public ActionResult Login()
         {
-            if (ModelState.IsValid)
-            {
-                using (DB25dd db = new DB25dd())
-                {
-                    var obj = db.Admins.Where(a => a.Email.Equals(objadmin.Email) && a.Password.Equals(objadmin.Password)).FirstOrDefault();
-                    if (obj != null)
-                    {
-
-                        return View("Index", "Home");
-                    }
-
-                }
-                ModelState.Clear();
-            }
-            return View(objadmin);
+            return View();
         }
 
 
+        DB25E db = new DB25E();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(AdminViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                using (db)
+                {
+                    var obj = db.Admins.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["UserName"] = "Admin";
+                       
+                        TempData["Message"] = "Signing In"+Session["UserName"];
+                        return RedirectToAction("View");
+
+
+                    }
+                    else
+                    {
+                        TempData["Message"] = "Incorrect Email or Password";
+                    }
+                }
+            }
+
+            ModelState.Clear();
+            user.Email = "";
+            user.Password = "";
+            return View(user);
+        }
 
         public ActionResult AddCategory()
         {
@@ -73,19 +90,19 @@ namespace EatryOnline.Controllers
 
         public ActionResult AllCategories()
         {
-          DB25dd db = new DB25dd();
+          DB25E db = new DB25E();
             return View(db.Categories.ToList());
         }
 
 
         
 
-        DB25dd dd = new DB25dd();
+        DB25E dd = new DB25E();
 
 
         public ActionResult AllFood()
         {
-            DB25dd db = new DB25dd();
+            DB25E db = new DB25E();
             return View(db.FoodItems.ToList());
         }
 

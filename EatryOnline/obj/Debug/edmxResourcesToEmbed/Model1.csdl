@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DB25Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DB25Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="Email" />
@@ -29,6 +29,7 @@
     <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
     <Property Name="CustomerId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Table" Relationship="Self.FK_Booking_Table" FromRole="Booking" ToRole="Table" />
+    <NavigationProperty Name="Customer" Relationship="DB25Model1.FK_Booking_Customer" FromRole="Booking" ToRole="Customer" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -36,7 +37,6 @@
     </Key>
     <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="FoodItems" Relationship="Self.FK_FoodItem_Category" FromRole="Category" ToRole="FoodItem" />
   </EntityType>
   <EntityType Name="Chef">
@@ -60,6 +60,8 @@
     <Property Name="SQuestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SAnswer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="FeedbackCustomers" Relationship="DB25Model1.FK_FeedbackCustomer_Customer" FromRole="Customer" ToRole="FeedbackCustomer" />
+    <NavigationProperty Name="Bookings" Relationship="DB25Model1.FK_Booking_Customer" FromRole="Customer" ToRole="Booking" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -75,15 +77,24 @@
   </EntityType>
   <EntityType Name="FoodItem">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="FoodId" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CategoryId" Type="Int32" Nullable="false" />
-    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IsSpecial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_FoodItem_Category" FromRole="FoodItem" ToRole="Category" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_FoodItem" FromRole="FoodItem" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="foodwa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="HomeDelivery">
     <Key>
@@ -100,11 +111,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="customerId" Type="Int32" Nullable="false" />
     <Property Name="foodId" Type="Int32" Nullable="false" />
-    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
     <NavigationProperty Name="FoodItem" Relationship="Self.FK_Order_FoodItem" FromRole="Order" ToRole="FoodItem" />
   </EntityType>
@@ -142,14 +153,6 @@
       <PropertyRef Name="UserType" />
     </Key>
     <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Feedback">
-    <Key>
-      <PropertyRef Name="CustomerId" />
-      <PropertyRef Name="Paragraphh" />
-    </Key>
-    <Property Name="CustomerId" Type="Int32" Nullable="false" />
-    <Property Name="Paragraphh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <Association Name="FK_Booking_Table">
     <End Role="Table" Type="Self.Table" Multiplicity="1" />
@@ -192,14 +195,14 @@
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="FoodItem">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="FoodId" />
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="foodId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB25Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DB25E" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
     <EntitySet Name="Billings" EntityType="Self.Billing" />
     <EntitySet Name="Bookings" EntityType="Self.Booking" />
@@ -208,13 +211,13 @@
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="FoodItems" EntityType="Self.FoodItem" />
+    <EntitySet Name="foodwas" EntityType="Self.foodwa" />
     <EntitySet Name="HomeDeliveries" EntityType="Self.HomeDelivery" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItem" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Tables" EntityType="Self.Table" />
     <EntitySet Name="Table_1" EntityType="Self.Table_1" />
-    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
     <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
       <End Role="Table" EntitySet="Tables" />
       <End Role="Booking" EntitySet="Bookings" />
@@ -231,5 +234,47 @@
       <End Role="FoodItem" EntitySet="FoodItems" />
       <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
+    <EntitySet Name="FeedbackCustomers" EntityType="DB25Model1.FeedbackCustomer" />
+    <AssociationSet Name="FK_FeedbackCustomer_Customer" Association="DB25Model1.FK_FeedbackCustomer_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="FeedbackCustomer" EntitySet="FeedbackCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Customer" Association="DB25Model1.FK_Booking_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="FeedbackCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="customerId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="DB25Model1.FK_FeedbackCustomer_Customer" FromRole="FeedbackCustomer" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_FeedbackCustomer_Customer">
+    <End Type="DB25Model1.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="DB25Model1.FeedbackCustomer" Role="FeedbackCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackCustomer">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Customer">
+    <End Type="DB25Model1.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="DB25Model1.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

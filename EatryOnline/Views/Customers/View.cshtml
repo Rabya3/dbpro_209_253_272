@@ -128,7 +128,7 @@ html {
                             <li class="active"><a href="index.html">home</a></li>
                             <li><a href="about.html">about</a></li>
                             <li><a href="menu.html">menu</a></li>
-                            <li><a href="~/Home/Index">Log Out</a></li>
+                            <li><a href="@Url.Action("LogOut","Customers")">Log Out</a></li>
 
                           
 
@@ -141,7 +141,7 @@ html {
 
     <div class="section">
         <h2>Welcome Back to Eatry, @Session["Username"] </h2>
-        <a class="btn btn-success" href="@Url.Action("LogOut")">Log Out</a>
+       
         
         <h2></h2>
         <br>

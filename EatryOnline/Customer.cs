@@ -18,6 +18,8 @@ namespace EatryOnline
         public Customer()
         {
             this.Orders = new HashSet<Order>();
+            this.FeedbackCustomers = new HashSet<FeedbackCustomer>();
+            this.Bookings = new HashSet<Booking>();
         }
     
         public int Id { get; set; }
@@ -32,5 +34,9 @@ namespace EatryOnline
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace EatryOnline.Controllers
 {
     public class EmployeesController : Controller
     {
-        private DB25dd db = new DB25dd();
+        private DB25E db = new DB25E();
 
         // GET: Employees
         public ActionResult Index()
@@ -35,7 +35,7 @@ namespace EatryOnline.Controllers
             {
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Employee_info");
+                return File(stream, "application/pdf", "Employee_info.pdf");
             }
             catch
             {

@@ -21,5 +21,6 @@ namespace EatryOnline
         public int CustomerId { get; set; }
     
         public virtual Table Table { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }
