@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EatryOnline.FoodItem>
+
+@{
+    ViewBag.Title = "SpecialDishes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SpecialDishes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSpecial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagepath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSpecial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagepath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FoodId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FoodId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FoodId })
+        </td>
+    </tr>
+}
+
+</table>

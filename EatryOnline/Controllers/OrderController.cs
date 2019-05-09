@@ -6,8 +6,13 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using EatryOnline.Models;
 using System.Data.Entity.Infrastructure;
-using System.Net;
+
 using System.IO;
+using System.Net;
+using System.Web.Security;
+
+using CrystalDecisions.CrystalReports.Engine;
+using System.Data.Entity.Validation;
 
 namespace EatryOnline.Controllers
 {
@@ -61,8 +66,44 @@ namespace EatryOnline.Controllers
             cartitem i = new cartitem() { iid = int.Parse( pid), iqty = int.Parse( pqty) };
             Ok.c.Add(i);
             ViewBag.c = Ok.c;
+            
+       
+
             return View();
         }
+
+        [HttpPost]
+        public ActionResult HomeDel(HomeDelivery home)
+        {
+            try
+            {
+               HomeDelivery  ff = new HomeDelivery();
+                ff.Address = home.Address;
+                ff.CustomerId = Convert.ToInt32(Session["UserId"]);
+                ff.Contact = home.Contact;
+                dd.HomeDeliveries.Add(ff);
+                dd.SaveChanges();
+                TempData["Message"] = "Dear Customer, Ride will be at your place shortly";
+               
+                return View();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+            return View();
+
+        }
+
+
+
+
 
         public ActionResult FoodItem(int? id)
         {
@@ -83,6 +124,33 @@ namespace EatryOnline.Controllers
             return View();
         }
 
+        public ActionResult DoneOrder(string fid,string qty)
+        {
+            try
+            {
+                Order oo = new Order();
+                oo.customerId = Convert.ToInt32(Session["UserId"]);
+                oo.foodId = int.Parse(fid);
+                oo.orderDate = DateTime.Now;
+                oo.quantity = int.Parse(qty);
+                dd.Orders.Add(oo);
+                dd.SaveChanges();
+                TempData["Message"] = "yyyyyyyy";
+             
+                return View();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+            return View();
 
+        }
     }
-}
+    }

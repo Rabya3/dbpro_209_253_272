@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aa32f60bf95d4038ac7fd26d32daab63" Name="Diagram1" ZoomLevel="47">
+      <Diagram DiagramId="aa32f60bf95d4038ac7fd26d32daab63" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="DB25Model1.Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB25Model1.Billing" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB25Model1.Booking" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="DB25Model1.sysdiagram" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB25Model1.Table" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB25Model1.Table_1" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="DB25Model1.FK_Booking_Table" ManuallyRouted="false" />
         <AssociationConnector Association="DB25Model1.FK_FoodItem_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DB25Model1.FK_Order_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="DB25Model1.FK_Order_FoodItem" ManuallyRouted="false" />

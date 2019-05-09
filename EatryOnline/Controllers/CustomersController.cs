@@ -231,7 +231,7 @@ namespace EatryOnline.Controllers
         public ActionResult CustomerReport()
         {
             ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Customer.rpt"));
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CustomerInfo.rpt"));
             rd.SetDataSource(db.Customers.ToList());
             Response.Buffer = false;
             Response.ClearContent();
@@ -275,32 +275,32 @@ namespace EatryOnline.Controllers
 
         }
 
-        public ActionResult BookTable(Booking book)
-        {
-            try
-            {
-                Booking boo = new Booking();
-                boo.TableNo = book.TableNo;
-                boo.Date = book.Date;
-                boo.Time = book.Time;
-                boo.CustomerId = Convert.ToInt32(Session["UserId"]);
-                db.Bookings.Add(boo);
-                db.SaveChanges();
-                TempData["Message"] = "Dear Customer, Thank you for your Feedback";
-                ModelState.Clear();
-                return View();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
-            return View();
-        }
+        //public ActionResult BookTable(Booking book)
+        //{
+        //    try
+        //    {
+        //        Booking boo = new Booking();
+        //        boo.TableNo = book.TableNo;
+        //        boo.Date = book.Date;
+        //        boo.Time = book.Time;
+        //        boo.CustomerId = Convert.ToInt32(Session["UserId"]);
+        //        db.Bookings.Add(boo);
+        //        db.SaveChanges();
+        //        TempData["Message"] = "Dear Customer, Thank you for your Feedback";
+        //        ModelState.Clear();
+        //        return View();
+        //    }
+        //    catch (DbEntityValidationException ex)
+        //    {
+        //        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+        //        {
+        //            foreach (var validationError in entityValidationErrors.ValidationErrors)
+        //            {
+        //                Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+        //            }
+        //        }
+        //    }
+        //    return View();
+        //}
     }
 }

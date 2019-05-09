@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EatryOnline.FoodItem>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayooutUser.cshtml";
 }
 
 
@@ -24,7 +24,7 @@
         h2 {
             color: #ffb606;
             font-weight: bold;
-            margin-left: 120px;
+            margin-left: 70px;
         }
 
         p {
@@ -74,13 +74,12 @@
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.FoodName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Price)</td>
-
                         <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
 
                         <td>
 
                             @*<a class="btn btn-success" href="@Url.Action("AddOrder",new {Cid= Session["UserId"], Fid = item.FoodId, })">Order</a>*@
-                            @Html.ActionLink("Details", "FoodItem", new { id = item.FoodId }) |
+                            @Html.ActionLink("View Item", "FoodItem", new { id = item.FoodId }) |
 
 
                         </td>

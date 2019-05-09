@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "cart";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayooutUser.cshtml";
 }
 
     <html lang="en">
@@ -17,10 +17,10 @@
                 margin-left: 160px;
             }
 
-            h2 {
+            h3 {
                 color: #ffb606;
                 font-weight: bold;
-                margin-left: 100px;
+                margin-left: 50px;
             }
 
             p {
@@ -36,7 +36,6 @@
     </head>
     <body>
 
-
         <div class="w3-container">
             <center><h2>Sign Up</h2></center>
             <center>
@@ -49,15 +48,19 @@
         </div>
         <div class="w3-container">
 
-            <h2>Your Cart</h2>
-           
+            <h3>Your Cart</h3>
+
         </div>
 
         <div class="container">
-
+         
             <table class="table table-striped">
 
+
+
                 @{
+                    var total = 0;
+
                     DB25E obj = new DB25E();
                     var it = obj.FoodItems.ToList();
 
@@ -69,20 +72,45 @@
                             if (i.FoodId == @item.iid)
                             {
                                 var amount = @item.iqty * @i.Price;
-                                
+
                                 <tr>
+                                    <th>Item</th>
                                     <td>
-                                        @i.FoodName;
+                                        @i.FoodName
                                     </td>
+                                    <th>Price</th>
+
                                     <td>
-                                        @i.Price;
+                                        @i.Price
                                     </td>
+                                    <th>Quantity</th>
+
                                     <td>
-                                        @item.iqty;
+                                        @item.iqty
                                     </td>
                                 </tr>
+                                total += amount;
                             }
                         }
+
+
+                    }
+                    if (total == 0)
+                    {
+                        <h7>Your cart is empty</h7>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><h5>Total</h5></td>
+                            <td><h5>@total</h5></td>
+                           
+                           
+                            <td>@Html.ActionLink("Generate Bill", "Bill", "Order")</td>
+                           
+                        </tr>
 
 
                     }
@@ -90,6 +118,9 @@
                 }
             </table>
 
-            </div>
-</body>
+        </div>
+        
+       @Html.ActionLink("Menu", "ShowProducts") ;
+    </body>
+
 </html>

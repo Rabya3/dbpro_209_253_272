@@ -1,69 +1,119 @@
 ﻿@model EatryOnline.FoodItem
 
 @{
-    Layout = null;
+
+
+    Layout = "~/Views/Shared/_LayooutUser.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>FoodItem</title>
-</head>
-<body>
+
+@{
+    <html>
+    <head>
+
+        <style>
+            h4 {
+                color: #ffb606;
+                font-weight: bold;
+            }
+
+            .section {
+                margin: 200px;
+                margin-left: 50px;
+                margin-right: 50px;
+                padding: 0 5px;
+                background-color: snow;
+            }
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+
+            input {
+                padding: 2px;
+                border: 1px solid #eee;
+                font: normal 1em Verdana, sans-serif;
+                color: #777;
+            }
+
+            back {
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        </style>
+
+    </head>
+    <body>
+    </body>
+
+</html>
+}
+
+<div class="section">
     <div>
+
+
+
         <h4>FoodItem</h4>
+        @Html.DisplayFor(model => model.Category.Name)
         <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.FoodName)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.FoodName)
             </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.IsSpecial)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.IsSpecial)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.imagepath)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.imagepath)
-            </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Category.Name)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Category.Name)
             </dd>
-    
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+
+
+            
+
+            <dd>
+               <img src="@Url.Content(Model.imagepath)" width="250"height="250" />
+            </dd>
+
+
+
         </dl>
     </div>
     @{ Html.BeginForm("cart", "Order", FormMethod.Post, new { @class = "cart" });
         <input type="hidden" name="pid" value="@Model.FoodId" />
-        <input type="text" name="pqty" value="1"/>
-        <button type="submit">Add to Cart</button>
-    }
-    }
+        <input type="text" name="pqty" value="1" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
 
-</body>
-</html>
+                        <input type="submit" style="background-color:darkblue;color:white;width:130px; border-radius: 12px;
+                height:40px;" value="Add to Cart">
+                    </div>
+                </div>
+                @Html.ActionLink("Back to Menu", "ShowProducts") ;
+    }
+ 
+
+
+
+</div>
+
+
+

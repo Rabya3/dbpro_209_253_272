@@ -243,16 +243,6 @@
     <Compile Include="HomeDelivery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -292,10 +282,16 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Customer.cs">
+    <Compile Include="Reports\CustomerInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Customer.rpt</DependentUpon>
+      <DependentUpon>CustomerInfo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Salary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Salary.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -364,11 +360,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\main.js" />
     <Content Include="Global.asax" />
-    <Content Include="Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -394,13 +385,6 @@
     <Content Include="Content\style.scss" />
     <Content Include="Content\_mixin.scss" />
     <Content Include="Content\_variable.scss" />
-    <EntityDeploy Include="Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -492,6 +476,11 @@
     <Content Include="Views\Shared\_LayooutUser.cshtml" />
     <Content Include="Views\Customers\AddFeedback.cshtml" />
     <Content Include="Views\Customers\BookTable.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Order\HomeDel.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Employees\Salemp.cshtml" />
+    <Content Include="Views\Admin\SpecialDishes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -523,9 +512,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Customer.rpt">
+    <EmbeddedResource Include="Reports\CustomerInfo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Customer.cs</LastGenOutput>
+      <LastGenOutput>CustomerInfo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Salary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Salary.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

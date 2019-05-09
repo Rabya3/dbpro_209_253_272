@@ -19,6 +19,6 @@ namespace EatryOnline
         public string Contact { get; set; }
         public int CustomerId { get; set; }
         public int OrderId { get; set; }
-        public System.TimeSpan DispatchedTime { get; set; }
+        public Nullable<System.TimeSpan> DispatchedTime { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿@model IEnumerable<EatryOnline.Category>
+﻿@model IEnumerable<EatryOnline.Employee>
 
 @{
-    ViewBag.Title = "AllCategories";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 
 <!DOCTYPE html>
@@ -53,32 +53,37 @@
     </div>
     <div class="w3-container">
 
-        <h2>All Categories</h2>
-
+        <h2>Employees</h2>
+       
     </div>
 
     <div class="container">
-
+        <a class="btn btn-success" href="@Url.Action("exportReport")">Download Report</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                
+                    <th>@Html.DisplayNameFor(model => model.Designation)</th>
+                    <th>@Html.DisplayNameFor(model => model.Salary)</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
+
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                   
+                        <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Salary)</td>
 
                         <td>
-                             @Html.ActionLink("Add Food Item", "AddFoodItem", new { id = item.CategoryId }) |
-                            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-                           
-                            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                         </td>
                     </tr>
 

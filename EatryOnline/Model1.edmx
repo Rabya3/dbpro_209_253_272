@@ -16,18 +16,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="TotalAmount" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
-          <Property Name="MinLimit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinLimit" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TableNo" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Time" Type="time" Precision="7" Nullable="false" />
@@ -104,19 +104,19 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
-          <Property Name="DispatchedTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DispatchedTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="orderDate" Type="date" Nullable="false" />
+          <Property Name="orderDate" Type="datetime" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="foodId" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" />
@@ -273,19 +273,17 @@
           <Property Name="TotalAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="MinLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MinLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="TableNo" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="TableNo" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Table" Relationship="Self.FK_Booking_Table" FromRole="Booking" ToRole="Table" />
           <NavigationProperty Name="Customer" Relationship="DB25Model1.FK_Booking_Customer" FromRole="Booking" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Category">
@@ -362,14 +360,14 @@
           <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="DispatchedTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DispatchedTime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="foodId" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" />
@@ -403,7 +401,6 @@
           </Key>
           <Property Name="No" Type="Int32" Nullable="false" />
           <Property Name="Details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Table" FromRole="Table" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Table_1">
           <Key>
@@ -411,18 +408,6 @@
           </Key>
           <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Booking_Table">
-          <End Role="Table" Type="Self.Table" Multiplicity="1" />
-          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Table">
-              <PropertyRef Name="No" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="TableNo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FoodItem_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="FoodItem" Type="Self.FoodItem" Multiplicity="*" />
@@ -475,10 +460,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tables" EntityType="Self.Table" />
           <EntitySet Name="Table_1" EntityType="Self.Table_1" />
-          <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
-            <End Role="Table" EntitySet="Tables" />
-            <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
           <AssociationSet Name="FK_FoodItem_Category" Association="Self.FK_FoodItem_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="FoodItem" EntitySet="FoodItems" />
@@ -563,8 +544,8 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="DB25Model1.Booking">
               <MappingFragment StoreEntitySet="Booking">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TableNo" ColumnName="TableNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />

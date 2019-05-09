@@ -73,7 +73,9 @@ namespace EatryOnline.Controllers
                 cmd.ExecuteNonQuery();
                 connection.Close();
                 ModelState.Clear();
-                return RedirectToAction("yayyyy", "Admin");
+                TempData["Message"] = "New Category Added";
+                return RedirectToAction("AllCategories", "Admin");
+                
 
 
             }
@@ -94,8 +96,18 @@ namespace EatryOnline.Controllers
             return View(db.Categories.ToList());
         }
 
+        public ActionResult SpecialDishes()
+        {
+            FoodItem food = new FoodItem();
+            DB25E db = new DB25E();
+            if(food.IsSpecial!="no")
+            {
+                return View(db.FoodItems.ToList());
 
-        
+            }
+            return View();
+        }
+
 
         DB25E dd = new DB25E();
 
@@ -196,8 +208,8 @@ namespace EatryOnline.Controllers
                 string filename = Path.GetFileNameWithoutExtension(f.ImageFile.FileName);
                 string extension = Path.GetExtension(f.ImageFile.FileName);
                 filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                f.imagepath = "~/Content/images/Uploads" + filename;
-                filename = Path.Combine(Server.MapPath("~/Content/images//Uploads"), filename);
+                f.imagepath = "~/Content/images/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
                 f.ImageFile.SaveAs(filename);
                 SqlConnection connection = new SqlConnection(Constr);
                 connection.Open();

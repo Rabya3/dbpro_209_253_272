@@ -4,14 +4,56 @@
     ViewBag.Title = "AddFoodItem";
 }
 
-<h2>AddFoodItem</h2>
+@{
+    <html>
+    <head>
+
+        <style>
+            h4 {
+                color: #ffb606;
+                font-weight: bold;
+            }
+
+            .section {
+                margin: 200px;
+                margin-left: 50px;
+                margin-right: 50px;
+                padding: 0 5px;
+                background-color: snow;
+            }
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+
+            input {
+                padding: 2px;
+                border: 1px solid #eee;
+                font: normal 1em Verdana, sans-serif;
+                color: #777;
+            }
+
+            back {
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        </style>
+
+    </head>
+    <body>
+    </body>
+
+</html>
+}
 
 @using (Html.BeginForm("AddFoodItem", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>FoodViewModel</h4>
+        <h4>Add Food Item</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -69,6 +111,4 @@
     </script>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

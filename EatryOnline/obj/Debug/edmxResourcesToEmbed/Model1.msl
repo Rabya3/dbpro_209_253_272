@@ -24,8 +24,8 @@
     <EntitySetMapping Name="Bookings">
       <EntityTypeMapping TypeName="DB25Model1.Booking">
         <MappingFragment StoreEntitySet="Booking">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TableNo" ColumnName="TableNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />

@@ -11,18 +11,18 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="TotalAmount" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="CustomerId" Type="int" Nullable="false" />
     <Property Name="OrderId" Type="int" Nullable="false" />
-    <Property Name="MinLimit" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MinLimit" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TableNo" Type="int" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="Time" Type="time" Precision="7" Nullable="false" />
@@ -99,19 +99,19 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CustomerId" Type="int" Nullable="false" />
     <Property Name="OrderId" Type="int" Nullable="false" />
-    <Property Name="DispatchedTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DispatchedTime" Type="time" Precision="7" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="orderDate" Type="date" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" Nullable="false" />
     <Property Name="customerId" Type="int" Nullable="false" />
     <Property Name="foodId" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" />

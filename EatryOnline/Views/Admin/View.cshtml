@@ -67,6 +67,7 @@
 
                 .card {
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                    padding:20 px;
                 }
 
                 .container {
@@ -155,8 +156,7 @@
 
                         <h5 class="title">Manage Menu</h5>
                         
-
-                        <p><button class="button">Menu</button></p>
+                       <p> <button onclick="location.href='@Url.Action("ShowProducts", "Order")';return false;">Menu</button></p>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                         <h5 class="title">Manage Staff</h5>
                       
 
-                        <p><button class="button">Staff</button></p>
+                        <p> <button onclick="location.href='@Url.Action("Create", "Employees")';return false;">Manage Staff</button></p>
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                         >
                         <h5 class="title">Manage Reports </h5>
                         
-                        <p><button class="button">Reports</button></p>
+                        <p> <button onclick="location.href='@Url.Action("ShowProducts", "Order")';return false;">Menu</button></p>
                     </div>
                 </div>
             </div>

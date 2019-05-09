@@ -23,10 +23,39 @@ namespace EatryOnline.Controllers
             return View(db.Employees.ToList());
         }
 
-        public ActionResult exportReport()
+        public ActionResult Salemp()
+        {
+            return View(db.Employees.ToList());
+        }
+
+
+        //public ActionResult exportReport()
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport1.rpt"));
+        //    rd.SetDataSource(db.Employees.ToList());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        return File(stream, "application/pdf", "Employee_info.pdf");
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+
+
+        //}
+
+
+        public ActionResult SalaryReport()
         {
             ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport1.rpt"));
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salary.rpt"));
             rd.SetDataSource(db.Employees.ToList());
             Response.Buffer = false;
             Response.ClearContent();
@@ -35,7 +64,7 @@ namespace EatryOnline.Controllers
             {
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Employee_info.pdf");
+                return File(stream, "application/pdf", "Employee_Salary.pdf");
             }
             catch
             {
@@ -44,6 +73,9 @@ namespace EatryOnline.Controllers
 
 
         }
+
+
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
